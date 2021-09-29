@@ -1,5 +1,6 @@
 package com.zannardyapps.mylist.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -8,6 +9,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.android.material.timepicker.TimeFormat.CLOCK_24H
+import com.zannardyapps.mylist.MainActivity
 import com.zannardyapps.mylist.databinding.ActivityAddTaskBinding
 import com.zannardyapps.mylist.datasource.TaskDataSource
 import com.zannardyapps.mylist.extensions.format
@@ -33,7 +35,10 @@ class AddTaskActivity: AppCompatActivity() {
         }
 
         binding.buttonCancel.setOnClickListener {
-            finish()
+            binding.editTextTitle.setText("")
+            binding.editTextDescription.setText("")
+            binding.editTextData.setText("")
+            binding.editTextTime.setText("")
         }
 
         binding.buttonAdd.setOnClickListener {
@@ -57,6 +62,10 @@ class AddTaskActivity: AppCompatActivity() {
                 TaskDataSource.insertTasksList(addedTask)
                 Toast.makeText(this, "Tarefa adicionada!", Toast.LENGTH_LONG).show()
             }
+        }
+
+        binding.imageViewBack.setOnClickListener {
+            openMainActivity()
         }
 
     }
@@ -92,5 +101,11 @@ class AddTaskActivity: AppCompatActivity() {
 
             binding.editTextTime.setText("$timeHour:$timeMinute")
         }
+    }
+
+    private fun openMainActivity(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
