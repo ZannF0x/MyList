@@ -2,13 +2,16 @@ package com.zannardyapps.mylist.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.android.material.timepicker.TimeFormat.CLOCK_24H
 import com.zannardyapps.mylist.databinding.ActivityAddTaskBinding
+import com.zannardyapps.mylist.datasource.TaskDataSource
 import com.zannardyapps.mylist.extensions.format
+import com.zannardyapps.mylist.model.Task
 import java.util.*
 
 class AddTaskActivity: AppCompatActivity() {
@@ -34,7 +37,25 @@ class AddTaskActivity: AppCompatActivity() {
         }
 
         binding.buttonAdd.setOnClickListener {
-            TODO("Criar TaskDataSource")
+
+            if (binding.editTextTitle.text.isEmpty()||
+                binding.editTextDescription.text.isEmpty()||
+                binding.editTextData.text.isEmpty()||
+                binding.editTextTime.text.isEmpty()){
+
+                Toast.makeText(this, "ERRO! Preencha todos os campos.", Toast.LENGTH_LONG).show()
+
+            }else {
+
+                val addedTask: Task = Task(
+                    title = binding.editTextTitle.text.toString(),
+                    description = binding.editTextDescription.text.toString(),
+                    date = binding.editTextData.text.toString(),
+                    time = binding.editTextTime.text.toString()
+                )
+
+                TaskDataSource.insertTasksList(addedTask)
+            }
         }
 
     }
