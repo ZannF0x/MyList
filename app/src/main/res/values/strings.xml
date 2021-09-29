@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MyList</string>
+    <string name="tarefas_de_hoje">Tarefas de hoje...</string>
+    <string name="bot_o_adicionar_de_tarefa">botão adicionar de tarefa</string>
+    <string name="criar_tarefa">Criar tarefa</string>
+    <string name="titulo">Título</string>
+    <string name="descricao">Descrição</string>
+    <string name="voltar">voltar</string>
+    <string name="data">Data</string>
+    <string name="horario">Horário</string>
+    <string name="cancelar">Cancelar</string>
+</resources>
