@@ -39,11 +39,11 @@ class AddTaskActivity: AppCompatActivity() {
         binding.buttonAdd.setOnClickListener {
 
             if (binding.editTextTitle.text.isEmpty()||
-                binding.editTextDescription.text.isEmpty()||
+                //binding.editTextDescription.text.isEmpty()||
                 binding.editTextData.text.isEmpty()||
                 binding.editTextTime.text.isEmpty()){
 
-                Toast.makeText(this, "ERRO! Preencha todos os campos.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "ERRO! Preencha todos os campos não opcionais.", Toast.LENGTH_LONG).show()
 
             }else {
 
@@ -55,6 +55,7 @@ class AddTaskActivity: AppCompatActivity() {
                 )
 
                 TaskDataSource.insertTasksList(addedTask)
+                Toast.makeText(this, "Tarefa adicionada!", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -86,7 +87,10 @@ class AddTaskActivity: AppCompatActivity() {
 
         // Se o usuário apertar em Ok...
         timePicker.addOnPositiveButtonClickListener {
-            binding.editTextTime.setText("${timePicker.hour}:${timePicker.minute}")
+           val timeHour = if (timePicker.minute in 0..9) "0${timePicker.minute}" else timePicker.minute
+            val timeMinute = if (timePicker.hour in 0..9) "0${timePicker.hour}" else timePicker.hour
+
+            binding.editTextTime.setText("$timeHour:$timeMinute")
         }
     }
 }
