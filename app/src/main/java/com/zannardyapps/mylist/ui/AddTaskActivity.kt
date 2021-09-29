@@ -2,14 +2,11 @@ package com.zannardyapps.mylist.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.google.android.material.timepicker.TimeFormat.CLOCK_24H
-import com.zannardyapps.mylist.MainActivity
 import com.zannardyapps.mylist.databinding.ActivityAddTaskBinding
 import com.zannardyapps.mylist.datasource.TaskDataSource
 import com.zannardyapps.mylist.extensions.format

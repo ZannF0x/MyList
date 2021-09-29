@@ -1,10 +1,9 @@
-package com.zannardyapps.mylist
+package com.zannardyapps.mylist.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.zannardyapps.mylist.databinding.ActivityMainBinding
-import com.zannardyapps.mylist.ui.AddTaskActivity
 
 class MainActivity : AppCompatActivity() {
 
