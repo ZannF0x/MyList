@@ -2,6 +2,7 @@ package com.zannardyapps.mylist.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,18 @@ class TaskAdapter(): ListAdapter<Task,TaskAdapter.TaskViewHolder>(DiffCallback()
                 binding.taskDescription.text = item.description
                 binding.taskTime.text = item.time
                 binding.taskDate.text = item.date
+
+                binding.moreOptions.setOnClickListener {
+                    showPopup()
+                }
             }
+
+
+        private fun showPopup(){
+            val icMore = binding.moreOptions
+            val popupMenu = PopupMenu(icMore.context, icMore)
+            //popupMenu.menuInflater.inflate()
+        }
     }
 
     class DiffCallback: DiffUtil.ItemCallback<Task>() {

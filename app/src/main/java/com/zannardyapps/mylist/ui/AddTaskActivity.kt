@@ -62,7 +62,6 @@ class AddTaskActivity: AppCompatActivity() {
                 )
 
                 TaskDataSource.insertTasksList(addedTask)
-                Log.e("TAG_OK", "Adiconado")
                 setResult(Activity.RESULT_OK)
                 finish()
                 //Toast.makeText(this, "Tarefa adicionada!", Toast.LENGTH_LONG).show()
@@ -71,6 +70,7 @@ class AddTaskActivity: AppCompatActivity() {
 
         binding.imageViewBack.setOnClickListener {
             openMainActivity()
+            finish()
         }
 
     }

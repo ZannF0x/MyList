@@ -6,9 +6,19 @@
     android:background="@color/white_25"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/moreOptions"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic__more_vert"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/mais_op_es" />
+
     <TextView
         android:id="@+id/taskTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tarefa Bootcamp Android Developer"
         android:textStyle="bold"
@@ -25,7 +35,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/taskTitle" />
 

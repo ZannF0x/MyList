@@ -3,6 +3,7 @@ package com.zannardyapps.mylist.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.zannardyapps.mylist.databinding.ActivityMainBinding
 import com.zannardyapps.mylist.datasource.TaskDataSource
 
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar!!.hide()
 
+        initAdapter()
+
         binding.buttonAdd.setOnClickListener {
             openAddTaskActivity()
         }
@@ -32,13 +35,16 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, CODE_CREATE_NEW_TASK)
     }
 
+    private fun initAdapter(){
+        taskAdapter.submitList(TaskDataSource.getList())
+        binding.recyclerViewTasksToday.adapter = taskAdapter
+        binding.recyclerViewTasksToday.layoutManager = LinearLayoutManager(this)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CODE_CREATE_NEW_TASK){
-
-            taskAdapter.submitList(TaskDataSource.getList())
-            binding.recyclerViewTasksToday.adapter = taskAdapter
-
+            taskAdapter.notifyItemInserted(TaskDataSource.lastPositionList())
         }
     }
 }

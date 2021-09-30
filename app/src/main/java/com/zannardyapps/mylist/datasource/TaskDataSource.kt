@@ -10,4 +10,6 @@ object TaskDataSource {
     fun insertTasksList(task: Task){
         tasksList.add(task.copy(id = tasksList.size + 1))
     }
+
+    fun lastPositionList() = tasksList.size - 1
 }
