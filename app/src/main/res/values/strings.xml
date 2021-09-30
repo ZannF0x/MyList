@@ -10,4 +10,6 @@
     <string name="horario">Horário</string>
     <string name="cancelar">Cancelar</string>
     <string name="mais_op_es">Mais opções</string>
+    <string name="editar">Editar tarefa</string>
+    <string name="deletar_tarefa">Deletar tarefa</string>
 </resources>

@@ -19,11 +19,25 @@ class AddTaskActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityAddTaskBinding
 
+    companion object {
+        const val TASK_ID = "task_id"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar!!.hide()
+
+        if (intent.hasExtra(TASK_ID)) {
+            val taskId = intent.getIntExtra(TASK_ID, 0)
+            TaskDataSource.findById(taskId)?.let {
+                binding.editTextTitle.setText(it.title)
+                binding.editTextDescription.setText(it.description)
+                binding.editTextData.setText(it.date)
+                binding.editTextTime.setText(it.time)
+            }
+        }
 
         binding.editTextData.setOnClickListener {
             insertDate()
@@ -58,7 +72,8 @@ class AddTaskActivity: AppCompatActivity() {
                     title = binding.editTextTitle.text.toString(),
                     description = binding.editTextDescription.text.toString(),
                     date = binding.editTextData.text.toString(),
-                    time = binding.editTextTime.text.toString()
+                    time = binding.editTextTime.text.toString(),
+                    id = intent.getIntExtra(TASK_ID, 0)
                 )
 
                 TaskDataSource.insertTasksList(addedTask)

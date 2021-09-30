@@ -1,5 +1,6 @@
 package com.zannardyapps.mylist.ui
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,6 +29,17 @@ class MainActivity : AppCompatActivity() {
             openAddTaskActivity()
         }
 
+        taskAdapter.listenerActionEdit = {
+            val intent = Intent(this, AddTaskActivity::class.java)
+            intent.putExtra(AddTaskActivity.TASK_ID, it.id)
+            startActivityForResult(intent, CODE_CREATE_NEW_TASK)
+        }
+
+        taskAdapter.listenerActionRemove = {
+            TaskDataSource.removeTask(it)
+            taskAdapter.submitList(TaskDataSource.getList())
+        }
+
     }
 
     private fun openAddTaskActivity(){
@@ -43,8 +55,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CODE_CREATE_NEW_TASK){
+        if (requestCode == CODE_CREATE_NEW_TASK && resultCode == Activity.RESULT_OK){
             taskAdapter.notifyItemInserted(TaskDataSource.lastPositionList())
+            taskAdapter.submitList(TaskDataSource.getList())
         }
     }
 }
