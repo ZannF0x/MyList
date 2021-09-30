@@ -15,6 +15,8 @@
     android:background="@drawable/wallpaper_app_todolist"
     tools:context=".ui.MainActivity">
 
+
+
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
@@ -42,11 +44,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle">
 
+        <include
+            android:id="@+id/include"
+            layout="@layout/empty_state_layout"
+            android:visibility="visible"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTasksToday"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:visibility="gone"
             tools:listitem="@layout/item_task_layout"/>
 
     </LinearLayout>

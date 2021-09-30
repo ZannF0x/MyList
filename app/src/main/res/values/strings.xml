@@ -12,4 +12,5 @@
     <string name="mais_op_es">Mais opções</string>
     <string name="editar">Editar tarefa</string>
     <string name="deletar_tarefa">Deletar tarefa</string>
+    <string name="ops_voc_n_o_possui_nehuma_tarefa_para_hoje">Ops! Você não possui nehuma tarefa hoje.</string>
 </resources>

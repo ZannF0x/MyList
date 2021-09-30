@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zannardyapps.mylist.databinding.ActivityMainBinding
 import com.zannardyapps.mylist.datasource.TaskDataSource
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         taskAdapter.listenerActionRemove = {
             TaskDataSource.removeTask(it)
-            taskAdapter.submitList(TaskDataSource.getList())
+            updateList()
         }
 
     }
@@ -48,16 +49,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter(){
-        taskAdapter.submitList(TaskDataSource.getList())
+        updateList()
         binding.recyclerViewTasksToday.adapter = taskAdapter
         binding.recyclerViewTasksToday.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun updateList(){
+        val list = TaskDataSource.getList()
+        if (list.isEmpty()) {
+            binding.include.emptyState.visibility = View.VISIBLE
+        } else {
+            binding.include.emptyState.visibility = View.GONE
+        }
+
+        taskAdapter.submitList(list)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CODE_CREATE_NEW_TASK && resultCode == Activity.RESULT_OK){
             taskAdapter.notifyItemInserted(TaskDataSource.lastPositionList())
-            taskAdapter.submitList(TaskDataSource.getList())
+            updateList()
         }
     }
 }
