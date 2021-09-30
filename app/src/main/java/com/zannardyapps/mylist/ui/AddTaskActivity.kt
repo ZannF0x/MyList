@@ -1,7 +1,9 @@
 package com.zannardyapps.mylist.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -45,7 +47,10 @@ class AddTaskActivity: AppCompatActivity() {
                 binding.editTextData.text.isEmpty()||
                 binding.editTextTime.text.isEmpty()){
 
-                Toast.makeText(this, "ERRO! Preencha todos os campos não opcionais.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "ERRO! Preencha todos os campos não opcionais.",
+                    Toast.LENGTH_LONG).show()
 
             }else {
 
@@ -57,7 +62,10 @@ class AddTaskActivity: AppCompatActivity() {
                 )
 
                 TaskDataSource.insertTasksList(addedTask)
-                Toast.makeText(this, "Tarefa adicionada!", Toast.LENGTH_LONG).show()
+                Log.e("TAG_OK", "Adiconado")
+                setResult(Activity.RESULT_OK)
+                finish()
+                //Toast.makeText(this, "Tarefa adicionada!", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -93,8 +101,9 @@ class AddTaskActivity: AppCompatActivity() {
 
         // Se o usuário apertar em Ok...
         timePicker.addOnPositiveButtonClickListener {
-           val timeHour = if (timePicker.minute in 0..9) "0${timePicker.minute}" else timePicker.minute
-            val timeMinute = if (timePicker.hour in 0..9) "0${timePicker.hour}" else timePicker.hour
+           val timeHour = if (timePicker.hour in 0..9) "0${timePicker.hour}" else timePicker.hour
+            val timeMinute = if (timePicker.minute in 0..9) "0${timePicker.minute}" else timePicker.minute
+
 
             binding.editTextTime.setText("$timeHour:$timeMinute")
         }
