@@ -30,11 +30,13 @@ class MainActivity : AppCompatActivity() {
             openAddTaskActivity()
         }
 
-        taskAdapter.listenerActionEdit = {
+        /*
+         taskAdapter.listenerActionEdit = {
             val intent = Intent(this, AddTaskActivity::class.java)
             intent.putExtra(AddTaskActivity.TASK_ID, it.id)
             startActivityForResult(intent, CODE_CREATE_NEW_TASK)
         }
+         */
 
         taskAdapter.listenerActionRemove = {
             TaskDataSource.removeTask(it)

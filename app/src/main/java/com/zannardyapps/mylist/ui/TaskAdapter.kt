@@ -12,15 +12,14 @@ import com.zannardyapps.mylist.model.Task
 
 class TaskAdapter(): ListAdapter<Task,TaskAdapter.TaskViewHolder>(DiffCallback()) {
 
-    var listenerActionEdit:(Task) -> Unit = {
-
-    }
-
     var listenerActionRemove:(Task) -> Unit = {
 
     }
 
     /*
+     var listenerActionEdit:(Task) -> Unit = {
+
+    }
      */
 
 
@@ -58,7 +57,7 @@ class TaskAdapter(): ListAdapter<Task,TaskAdapter.TaskViewHolder>(DiffCallback()
             popupMenu.setOnMenuItemClickListener { menuItem ->
 
                 when(menuItem.itemId){
-                    R.id.actionEdit -> listenerActionEdit(item)
+                    //R.id.actionEdit -> listenerActionEdit(item)
                     R.id.actionDelete -> listenerActionRemove(item)
                 }
 
